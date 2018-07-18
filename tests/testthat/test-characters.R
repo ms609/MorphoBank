@@ -1,5 +1,6 @@
 context("Character functions")
-filename <- MostRecentNexus(MorphoBankExports(path='../../inst'))
+filename <- MostRecentNexus(MorphoBankExports(path='../../inst')) # if in testthat/tests
+if (length(filename) == 0) filename <- MostRecentNexus(MorphoBankExports(path='inst'))
 
 test_that("Character data is read from file", {
   my_data <- TreeSearch::ReadAsPhyDat(filename)
