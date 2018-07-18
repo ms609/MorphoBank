@@ -3,19 +3,45 @@
 #' @param string Input string
 #'
 #' @return `string`, punctuated with a final full stop (period).`
-#' @export
 #'
 #' @examples {
 #' EndSentence("Hello World")
 #' # "Hello World."
 #' }
 #'
+#' @author Martin R. Smith
+#' @export
 EndSentence <- function (string) {
   ret <- gsub("\\s*\\.?\\s*\\.$", ".", paste0(string, '.'), perl=TRUE)
   ret <- gsub("(\\.[\"'])\\.$", "\\1", ret, perl=TRUE)
   ret <- gsub("([!\\?])\\.$", "\\1", ret, perl=TRUE)
   ret
 }
+
+PrintStates <- function (states) {
+  states <- gsub("^'(.*)'$", "\\1", states)
+  tokens <- seq_along(states) - 1L
+  if (states[1] == "") {
+    states <- states[-1]
+    tokens <- tokens[-1]
+    transformational <- TRUE
+  } else {
+    transformational <- FALSE
+  }
+  cat(paste0(" > ", tokens, ": ", states, "  \n"))
+  cat("> ", if (transformational) "Transformational" else "Neomorphic", "character.  \n>\n")
+}
+
+PrintNaughtyInapplicables <- function (states) {
+  if (any(states == '-'))
+    cat("  \n Oh dear! <mark>**You included the inapplicable token in a neomorphic character!**</mark>",
+        "  \n That's really very naughty, as @Brazeau2018 will tell you.",
+        "  \n Unless you are very sure that you understand the consequences, ",
+        "you should mark the character as Transformational by setting State 0 to",
+        "`[Transformational character]`, or re-code: \n\n - ",
+        paste(names(states[states == '-']), collapse="  \n - "))
+}
+
 #' Link to MorphoBank project
 #'
 #' @param id Integer corresponding to the project's MorphoBank identifier
