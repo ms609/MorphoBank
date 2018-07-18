@@ -1,3 +1,16 @@
+#' Nexus Time
+#'
+#' Report time that a Nexus file was exported from MorphoBank
+#'
+#' @param filename String specifying path to the file
+#' @param format Format of output; see below
+#'
+#' @return The time that `filename` was exported from MorphoBank, according
+#' to its internal comment, either by specifying the year, month, day and time as a double
+#' (`format = 'double'`) or as a string in the format `YYYY-MM-DD hh:mm:ss` (otherwise)
+#'
+#' @author Martin R. Smith
+#' @export
 NexusTime <- function (filename, format='double') {
   FILE <- file(filename)
   open(FILE)
