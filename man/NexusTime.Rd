@@ -7,7 +7,7 @@
 NexusTime(filename, format = "double")
 }
 \arguments{
-\item{filename}{String specifying path to the file}
+\item{filename}{A string listing the path to a file exported by MorphoBank}
 
 \item{format}{Format of output; see below}
 }

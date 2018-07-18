@@ -34,8 +34,6 @@ NexusTime <- function (filename, format='double') {
 #' from MorphoBank.
 #' @export
 #' @author Martin R. Smith
-#'
-#' @examples
 MorphoBankExports <- function (path='.', ...) {
   list.files(path, pattern='mbank_.*\\.nex', full.names=TRUE, ...)
 }
