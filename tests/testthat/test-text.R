@@ -13,6 +13,6 @@ test_that("EndSentence works correctly", {
 })
 
 test_that("MorphoBankDecode decodes", {
-  expect_equal("' -- \n 1--2", MorphoBankDecode("'' - ^n 1-2"))
+  expect_equal("' -- x  \n 1--2", MorphoBankDecode("'' - x^n 1-2"))
 })
 
