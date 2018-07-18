@@ -24,6 +24,22 @@ NexusTime <- function (filename, format='double') {
   }
 }
 
+#' MorphoBank exports
+#'
+#' @param path Path to search
+#' @param \dots Additional parameters to [list.files]
+#'
+#' @return A character vector listing the full filenames of all Nexus files
+#' in the specified directory beginning "mbank_", and thus presumed exported
+#' from MorphoBank.
+#' @export
+#' @author Martin R. Smith
+#'
+#' @examples
+MorphoBankExports <- function (path='.', ...) {
+  list.files(path, pattern='mbank_.*\\.nex', full.names=TRUE, ...)
+}
+
 #' Most recent Nexus file
 #'
 #' Reports which of a list of nexus files was exported from MorphoBank most recently
@@ -33,6 +49,6 @@ NexusTime <- function (filename, format='double') {
 #' @return character of length one, specifying the most recent of the files provided
 #' @author Martin R. Smith
 #' @export
-MostRecentNexus <- function (filenames) {
+MostRecentNexus <- function (filenames = MorphoBankExports()) {
   filenames[which.max(vapply(filenames, NexusTime, double(1)))]
 }
