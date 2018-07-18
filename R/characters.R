@@ -81,5 +81,6 @@ IsTransformational <- function (states) {
 }
 
 #' @describeIn IsTransformational The inverse of IsTransformational
+#' @export
 IsNeomorphic <- function (states) !IsTransformational(states)
 
