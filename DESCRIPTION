@@ -17,7 +17,8 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    TreeSearch
 RdMacros: Rdpack
 LazyData: true
 ByteCompile: true
