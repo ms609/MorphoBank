@@ -74,7 +74,7 @@ PrintNaughtyInapplicables <- function (states) {
 #' @export
 MorphoLink <- function (id, linkText=paste('project', id)) {
   # https://morphobank.org/permalink/?P not currently working, so:
-  taxaRoot <- "https://morphobank.org/index.php/Projects/Taxa/project_id/"
+  taxaRoot <- "http://morphobank.org/index.php/Projects/Taxa/project_id/"
   linkStatus <- attr(curlGetHeaders(paste0(taxaRoot, id)), 'status')
   if (linkStatus == 200) {
     paste0('[', linkText, '](https://morphobank.org/permalink/?P', id, ')')
