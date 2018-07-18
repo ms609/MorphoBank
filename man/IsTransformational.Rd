@@ -2,9 +2,12 @@
 % Please edit documentation in R/characters.R
 \name{IsTransformational}
 \alias{IsTransformational}
+\alias{IsNeomorphic}
 \title{Is Character Transformational}
 \usage{
 IsTransformational(states)
+
+IsNeomorphic(states)
 }
 \arguments{
 \item{states}{TODO}
@@ -15,3 +18,8 @@ A logical specifying whether each character is transformational
 \description{
 Is Character Transformational
 }
+\section{Functions}{
+\itemize{
+\item \code{IsNeomorphic}: The inverse of IsTransformational
+}}
+

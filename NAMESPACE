@@ -2,6 +2,7 @@
 
 export(EndSentence)
 export(IsTransformational)
+export(MorphoBankDecode)
 export(MorphoBankExports)
 export(MorphoLink)
 export(MostRecentNexus)
