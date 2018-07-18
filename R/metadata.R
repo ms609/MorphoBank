@@ -2,7 +2,7 @@
 #'
 #' Report time that a Nexus file was exported from MorphoBank
 #'
-#' @param filename String specifying path to the file
+#' @template filenameParam
 #' @param format Format of output; see below
 #'
 #' @return The time that `filename` was exported from MorphoBank, according
@@ -23,3 +23,4 @@ NexusTime <- function (filename, format='double') {
     sub('.*(\\d{4}\\-\\d{2}\\-\\d{2}\\s\\d{2})\\.(\\d{2})\\.(\\d{2}).*', "\\1:\\2:\\3", comment, perl=TRUE)
   }
 }
+
