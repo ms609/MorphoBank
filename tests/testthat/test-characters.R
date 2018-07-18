@@ -1,8 +1,8 @@
 context("Character functions")
-filename <- MostRecentNexus(MorphoBankExports(path='../../inst')) # if in testthat/tests
-if (length(filename) == 0) filename <- MostRecentNexus(MorphoBankExports(path='inst'))
+filename <- MostRecentNexus() # if in testthat/tests
 
 test_that("Character data is read from file", {
+  expect_equal(1, length(filename))
   my_data <- TreeSearch::ReadAsPhyDat(filename)
   expect_equal(54, length(names(my_data)))
   expect_equal(225, sum(attr(my_data, 'weight')))
