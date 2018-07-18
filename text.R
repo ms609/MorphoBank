@@ -1,3 +1,21 @@
+#' End Sentence
+#'
+#' @param string Input string
+#'
+#' @return `string`, punctuated with a final full stop (period).`
+#' @export
+#'
+#' @examples {
+#' EndSentence("Hello World")
+#' # "Hello World."
+#' }
+#'
+EndSentence <- function (string) {
+  ret <- gsub("\\s*\\.?\\s*\\.$", ".", paste0(string, '.'), perl=TRUE)
+  ret <- gsub("(\\.[\"'])\\.$", "\\1", ret, perl=TRUE)
+  ret <- gsub("([!\\?])\\.$", "\\1", ret, perl=TRUE)
+  ret
+}
 #' Link to MorphoBank project
 #'
 #' @param id Integer corresponding to the project's MorphoBank identifier
