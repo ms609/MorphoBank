@@ -33,7 +33,7 @@ MorphoBankDecode <- function (string) {
   string <- gsub("''", "'", string, fixed=TRUE)
   string <- gsub(" - ", " -- ", string, fixed=TRUE)
   string <- gsub("(\\d)\\-(\\d)", "\\1--\\2", string, perl=TRUE)
-  string <- gsub("(\\d) ?um\\b", "\\1 µm", string, perl=TRUE)
+  string <- gsub("(\\d) ?um\\b", "\\1 \u{03BC}m", string, perl=TRUE)
   string <- gsub(" [recoded as neomorphic]", " Inapplicable tokens in this neomorphic character have been replaced with the absent token, following @Brazeau2018", string, fixed=TRUE)
 
   # Return:
