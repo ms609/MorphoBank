@@ -7,7 +7,7 @@
 MostRecentNexus(filenames = MorphoBankExports())
 }
 \arguments{
-\item{filenams}{Character vector listing locations of nexus files exported from MorphoBank}
+\item{filenames}{Character vector listing locations of nexus files exported from MorphoBank}
 }
 \value{
 character of length one, specifying the most recent of the files provided

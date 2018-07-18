@@ -8,6 +8,8 @@ MorphoLink(id, linkText = paste("project", id))
 }
 \arguments{
 \item{id}{Integer corresponding to the project's MorphoBank identifier}
+
+\item{linkText}{Text to appear in link, once project is live}
 }
 \value{
 Text providing a link to the project, or if the project is not yet

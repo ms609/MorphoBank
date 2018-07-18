@@ -67,6 +67,7 @@ PrintNaughtyInapplicables <- function (states) {
 #' Link to MorphoBank project
 #'
 #' @param id Integer corresponding to the project's MorphoBank identifier
+#' @param linkText Text to appear in link, once project is live
 #'
 #' @return Text providing a link to the project, or if the project is not yet
 #' publically available, a note instructing password holders how to log in.
