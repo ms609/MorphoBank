@@ -24,3 +24,15 @@ NexusTime <- function (filename, format='double') {
   }
 }
 
+#' Most recent Nexus file
+#'
+#' Reports which of a list of nexus files was exported from MorphoBank most recently
+#'
+#' @param filenams Character vector listing locations of nexus files exported from MorphoBank
+#'
+#' @return character of length one, specifying the most recent of the files provided
+#' @author Martin R. Smith
+#' @export
+MostRecentNexus <- function (filenames) {
+  filenames[which.max(vapply(filenames, NexusTime, double(1)))]
+}
