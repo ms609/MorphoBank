@@ -1,8 +1,8 @@
 language: R
 r:
- - 3.4.0
+# - 3.4.0
  - release
- - devel # Incompatible with devtools?
+# - devel # Incompatible with devtools?
 cache: packages
 sudo: required # required if r_binary_packages; false otherwise
 warnings_are_errors: true
@@ -10,7 +10,7 @@ r_check_args: --as-cran
 
 git:
   depth: 5
-  
+
 r_binary_packages:
  - ape
  - covr
@@ -21,7 +21,6 @@ r_binary_packages:
 
 before_script:
  - R -e "devtools::document()"
-  
+
 after_success:
   - Rscript -e "covr::codecov()"
-  
