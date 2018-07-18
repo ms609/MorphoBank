@@ -1,4 +1,4 @@
-library(testthat)
-library(MorphoBank)
+library("testthat")
+library("MorphoBank")
 
 test_check("MorphoBank")
