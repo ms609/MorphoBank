@@ -10,6 +10,10 @@ test_that("Character data is read from file", {
 test_that("Character descriptions are extracted", {
   my_chars <- TreeSearch::ReadCharacters(filename)
   states <- attr(my_chars, 'state.labels')
-  expect_equal(96, sum(vapply(states, IsTransformational, logical(1))))
+  expect_equal(129, sum(vapply(states, IsNeomorphic, logical(1))))
 })
 
+test_that("Character notes are extracted", {
+  char_notes <- ReadNotes(filename)
+  expect_equal(225, length(char_notes))
+})
