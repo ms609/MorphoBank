@@ -11,6 +11,11 @@ r_check_args: --as-cran
 git:
   depth: 5
 
+addons:
+  apt:
+    packages:
+      - libssl1.0.0
+
 r_binary_packages:
  - ape
  - covr
