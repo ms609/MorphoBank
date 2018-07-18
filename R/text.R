@@ -18,6 +18,28 @@ EndSentence <- function (string) {
   ret
 }
 
+#' Decode MorphoBank text
+#'
+#' Converts strings from MorphoBank notes into a format compatible with Latex / bookdown
+#'
+#' @param string String to process
+#'
+#' @return A string with new lines and punctuation reformatted
+#' @export
+#' @author Martin R. Smith
+#'
+MorphoBankDecode <- function (string) {
+  string <- gsub("^n", "  \n", string, fixed=TRUE)
+  string <- gsub("''", "'", string, fixed=TRUE)
+  string <- gsub(" - ", " -- ", string, fixed=TRUE)
+  string <- gsub("(\\d)\\-(\\d)", "\\1--\\2", string, perl=TRUE)
+  string <- gsub("(\\d) ?um\\b", "\\1 µm", string, perl=TRUE)
+  string <- gsub(" [recoded as neomorphic]", " Inapplicable tokens in this neomorphic character have been replaced with the absent token, following @Brazeau2018", string, fixed=TRUE)
+
+  # Return:
+  string
+}
+
 PrintStates <- function (states) {
   states <- gsub("^'(.*)'$", "\\1", states)
   tokens <- seq_along(states) - 1L

@@ -12,3 +12,7 @@ test_that("EndSentence works correctly", {
   expect_equal('Hi!', EndSentence('Hi!'))
 })
 
+test_that("MorphoBankDecode decodes", {
+  expect_equal("' -- \n 1--2", MorphoBankDecode("'' - ^n 1-2"))
+})
+
