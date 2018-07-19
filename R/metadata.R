@@ -16,7 +16,7 @@ NexusTime <- function (filename, format='double') {
   open(FILE)
   comment <- readLines(FILE, n=3)[3]
   close(FILE)
-  comment <- sub("\\-(\\d) ", "-0\\1 ", comment) # Morphobank do odd things with times!
+  comment <- sub("\\-(\\d) ", "-0\\1 ", comment) # MorphoBank does odd things with times!
   if (format == 'double') {
     as.double(sub('.*(\\d{4})\\-(\\d{2})\\-(\\d{2})\\s(\\d{2})\\.(\\d{2}\\.\\d{2}).*', "\\1\\2\\3\\4\\5", comment, perl=TRUE))
   } else {
@@ -24,9 +24,15 @@ NexusTime <- function (filename, format='double') {
   }
 }
 
+#' @describeIn NexusTime TNT files
+#' @export
+TNTTime <- NexusTime
+
 #' MorphoBank exports
 #'
 #' @param path Path to search
+#' @param pattern Character string specifying regexp pattern, if files have
+#' been renamed after downloading from MorphoBank
 #' @param \dots Additional parameters to [list.files]
 #'
 #' @return A character vector listing the full filenames of all Nexus files
@@ -34,8 +40,14 @@ NexusTime <- function (filename, format='double') {
 #' from MorphoBank.
 #' @export
 #' @author Martin R. Smith
-MorphoBankExports <- function (path='.', ...) {
-  list.files(path, pattern='mbank_.*\\.nex', full.names=TRUE, ...)
+MorphoBankExports <- function (path='.', pattern='mbank_.*\\.nex', ...) {
+  list.files(path, pattern=pattern, full.names=TRUE, ...)
+}
+
+#' @describeIn MorphoBankExports Lists files exported in TNT format
+#' @export
+MorphoBankTNTs <- function (path='.', pattern='mbank_.*\\.tnt', ...) {
+  MorphoBankExports(path, pattern, ...)
 }
 
 #' Most recent Nexus file
@@ -49,4 +61,11 @@ MorphoBankExports <- function (path='.', ...) {
 #' @export
 MostRecentNexus <- function (filenames = MorphoBankExports()) {
   filenames[which.max(vapply(filenames, NexusTime, double(1)))]
+}
+
+#' @describeIn MostRecentNexus Reports which of a list of TNT matrices was
+#' exported from MorphoBank most recently
+#' @export
+MostRecentTNT <- function(filenames=MorphoBankTNTs()) {
+  filenames[which.max(vapply(filenames, TNTTime, double(1)))]
 }

@@ -2,9 +2,12 @@
 % Please edit documentation in R/metadata.R
 \name{NexusTime}
 \alias{NexusTime}
+\alias{TNTTime}
 \title{Nexus Time}
 \usage{
 NexusTime(filename, format = "double")
+
+TNTTime(filename, format = "double")
 }
 \arguments{
 \item{filename}{A string listing the path to a file exported by MorphoBank}
@@ -19,6 +22,11 @@ to its internal comment, either by specifying the year, month, day and time as a
 \description{
 Report time that a Nexus file was exported from MorphoBank
 }
+\section{Functions}{
+\itemize{
+\item \code{TNTTime}: TNT files
+}}
+
 \author{
 Martin R. Smith
 }

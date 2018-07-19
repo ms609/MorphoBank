@@ -2,9 +2,12 @@
 % Please edit documentation in R/metadata.R
 \name{MostRecentNexus}
 \alias{MostRecentNexus}
+\alias{MostRecentTNT}
 \title{Most recent Nexus file}
 \usage{
 MostRecentNexus(filenames = MorphoBankExports())
+
+MostRecentTNT(filenames = MorphoBankTNTs())
 }
 \arguments{
 \item{filenames}{Character vector listing locations of nexus files exported from MorphoBank}
@@ -15,6 +18,12 @@ character of length one, specifying the most recent of the files provided
 \description{
 Reports which of a list of nexus files was exported from MorphoBank most recently
 }
+\section{Functions}{
+\itemize{
+\item \code{MostRecentTNT}: Reports which of a list of TNT matrices was
+exported from MorphoBank most recently
+}}
+
 \author{
 Martin R. Smith
 }
