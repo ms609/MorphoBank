@@ -21,7 +21,7 @@
 #'   options(GitHubUser="ms609", GitHubRepo="MorphoBank")
 #'   GitLink()
 #' }
-GitLink <- function (path, alt=NULL, raw=TRUE, user=getOption('GitHubUser'),
+GitLink <- function (path='', alt=NULL, raw=TRUE, user=getOption('GitHubUser'),
                      repo=getOption('GitHubRepo')) {
   if (is.null(user)) warning("Specify GitHub Username with options(GitHubUser='USERNAME')")
   if (is.null(repo)) warning("Specify GitHub repository with options(GitHubRepo='REPONAME')")

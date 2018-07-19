@@ -66,13 +66,14 @@ PrintNaughtyInapplicables <- function (states) {
 
 #' Link to MorphoBank project
 #'
-#' @param id Integer corresponding to the project's MorphoBank identifier
+#' @param id Integer corresponding to the project's MorphoBank identifier.
+#' A global default can be set using `options(MorphoBankID=1234)`.
 #' @param linkText Text to appear in link, once project is live
 #'
 #' @return Text providing a link to the project, or if the project is not yet
 #' publically available, a note instructing password holders how to log in.
 #' @export
-MorphoLink <- function (id, linkText=paste('project', id)) {
+MorphoLink <- function (id=getOption('MorphoBankID'), linkText=paste('project', id)) {
   # https://morphobank.org/permalink/?P not currently working, so:
   taxaRoot <- "http://morphobank.org/index.php/Projects/Taxa/project_id/"
   linkStatus <- attr(curlGetHeaders(paste0(taxaRoot, id)), 'status')
