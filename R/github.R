@@ -20,6 +20,7 @@
 #'   GitLink('ms609', 'MorphoBank')
 #'   options(GitHubUser="ms609", GitHubRepo="MorphoBank")
 #'   GitLink()
+#'   GitHubPages()
 #' }
 GitLink <- function (path='', alt=NULL, raw=TRUE, user=getOption('GitHubUser'),
                      repo=getOption('GitHubRepo')) {
@@ -36,6 +37,7 @@ GitLink <- function (path='', alt=NULL, raw=TRUE, user=getOption('GitHubUser'),
 
 #' @describeIn GitLink  A link to `user`.github.io/`repo`/
 #' @importFrom knitr is_html_output
+#' @export
 GitHubPages <- function (path='', alt=NULL, user=getOption('GitHubUser'), repo=getOption('GitHubRepo')) {
   if (is.null(user)) warning("Specify GitHub Username with options(GitHubUser='USERNAME')")
   if (is.null(repo)) warning("Specify GitHub repository with options(GitHubRepo='REPONAME')")

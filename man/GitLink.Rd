@@ -5,8 +5,8 @@
 \alias{GitHubPages}
 \title{GitHub Link}
 \usage{
-GitLink(path, alt = NULL, raw = TRUE, user = getOption("GitHubUser"),
-  repo = getOption("GitHubRepo"))
+GitLink(path = "", alt = NULL, raw = TRUE,
+  user = getOption("GitHubUser"), repo = getOption("GitHubRepo"))
 
 GitHubPages(path = "", alt = NULL, user = getOption("GitHubUser"),
   repo = getOption("GitHubRepo"))
@@ -43,6 +43,7 @@ Generates a link to a file on a specified GitHub repository.
   GitLink('ms609', 'MorphoBank')
   options(GitHubUser="ms609", GitHubRepo="MorphoBank")
   GitLink()
+  GitHubPages()
 }
 }
 \author{

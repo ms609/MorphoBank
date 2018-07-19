@@ -4,10 +4,12 @@
 \alias{MorphoLink}
 \title{Link to MorphoBank project}
 \usage{
-MorphoLink(id, linkText = paste("project", id))
+MorphoLink(id = getOption("MorphoBankProject"), linkText = paste("project",
+  id))
 }
 \arguments{
-\item{id}{Integer corresponding to the project's MorphoBank identifier}
+\item{id}{Integer corresponding to the project's MorphoBank identifier.
+A global default can be set using `options(MorphoBankProject=1234)`.}
 
 \item{linkText}{Text to appear in link, once project is live}
 }
