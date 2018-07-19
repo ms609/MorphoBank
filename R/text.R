@@ -80,10 +80,10 @@ MorphoLink <- function (id=getOption('MorphoBankProject'), linkText=paste('proje
   if (linkStatus == 200) {
     paste0('[', linkText, '](https://morphobank.org/permalink/?P', id, ')')
   } else {
-    paste0("<mark>[This dataset has not yet been released to the public.",
+    paste("<mark>[This dataset has not yet been released to the public.",
     "If you have been given a password, access the dataset by",
     "[logging in to MorphoBank](https://morphobank.org/index.php/LoginReg/form)",
-    "using the project ID '", id,
-    "' as your e-mail address, and the password you have been given.]</mark>")
+    "using the project ID'", id,
+    "'as your e-mail address, and the password you have been given.]</mark>")
   }
 }
