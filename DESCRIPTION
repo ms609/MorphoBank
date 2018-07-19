@@ -14,9 +14,9 @@ BugReports: https://github.com/ms609/MorphoBank/issues
 Depends: R (>= 3.4.0)
 Imports: 
     ape (>= 5.0),
+    knitr,
     Rdpack
 Suggests:
-    knitr,
     rmarkdown,
     testthat,
     TreeSearch
