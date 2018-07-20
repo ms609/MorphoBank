@@ -75,7 +75,7 @@ PrintStates <- function (states) {
 #' `_`underscores`_` to denote italic text where required.
 #' @param charId Character or integer identifying the character, for use in the
 #' resultant div's ID attribute.
-#' @param Format Function that adds italics or other formatting to printed notes.
+#' @template FormatParam
 #'
 #' @return Text listing the character coding notes for each taxon, ready for inclusion in a markdown source document
 #'
@@ -169,5 +169,79 @@ MorphoLink <- function (id=getOption('MorphoBankProject'), linkText=paste('proje
     "[logging in to MorphoBank](https://morphobank.org/index.php/LoginReg/form)",
     "using the project ID `", id,
     "` as your e-mail address, and the password you have been given.]</mark>")
+  }
+}
+
+#' Print character heading
+#'
+#' Prints a character heading using markdown syntax at an appropriate level in
+#' the hierarchy.
+#'
+#' @param char Character string specifying the definition of the character
+#' @param charNo Character string identifying the character's number
+#' @param prevElements,thisElements,nextElements Character description,
+#' decomposed into its constituent hierarchichal elements
+#' @param forceDisplay Character vector specifying character descriptions to always
+#' print as a header when an exact match is encountered.
+#' @template FormatParam
+#'
+#' @return A heading for the character in markdown format
+#' @author Martin R. Smith
+#' @export
+#'
+#' @examples {
+#'   PrintCharacterHeading("Tail: Colour", 1, "NONE",
+#'   c("Tail", "Colour"), c("Tail", "Colour", "Patterning"))
+#' }
+#'
+#'
+PrintCharacterHeading <- function (char, charNo, prevElements='*NONE*',
+                                   thisElements=strsplit(char, ": ")[[1]],
+                                   nextElements='*NONE*',
+                                   forceDisplay = character(0),
+                                   Format = I) {
+  thisDepth <- length(thisElements)
+  nextDepth <- length(nextElements)
+
+  Header <- function (level, content) paste0("  \n", paste0(rep('#', level), collapse=''), " ", content, "  \n")
+  PrintDivision <- function (parts) cat(Header(2L, paste(
+    Format(thisElements[1:parts]), collapse=': ')))
+  PrintCharacter <- function () {
+    cat(Header(3L, paste0("[", charNo, "] ", paste0(Format(
+      thisElements[if(thisDepth < 4) thisDepth else 3:thisDepth]),
+      collapse=': '), " {-}")))
+  }
+  PrintSoloCharacter <- function () {
+    cat(Header(2L, paste0(paste(
+      Format(thisElements), collapse=': ')," [", charNo, "] ")))
+  }
+
+  if ( # Reasons to print a heading
+    (char %in% forceDisplay ||
+     thisElements[1] != prevElements[1])
+  ) {
+    if ( # Reasons to print a Solo character
+      (thisElements[1] != nextElements[1] &&
+       thisElements[1] != prevElements[1]) ||
+      (thisDepth == 2L && nextDepth > 1L &&
+       prevElements[1] == thisElements[1] &&
+       nextElements[1] == thisElements[1]) ||
+      (thisDepth == 1L && nextDepth > 1L &&
+       nextElements[1] == thisElements[1])
+    ) {
+      PrintSoloCharacter()
+    }
+    else if ( # Reasons to print a top-level heading
+      thisDepth == 1L ||
+      (nextDepth > 1L && (thisElements[2] != nextElements[2]))
+    ) {
+      PrintDivision(1)
+      PrintCharacter()
+    } else {
+      PrintDivision(2)
+      PrintCharacter()
+    }
+  } else { # Just print the character
+    PrintCharacter()
   }
 }

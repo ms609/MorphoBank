@@ -20,7 +20,8 @@ This matches the format given by `ReadNotes(filename)[[character_number]][[2]]`.
 \item{charId}{Character or integer identifying the character, for use in the
 resultant div's ID attribute.}
 
-\item{Format}{Function that adds italics or other formatting to printed notes.}
+\item{Format}{Function that is passed a character string, and should return the
+string with appropriate formatting (e.g. italicization of genus names).}
 }
 \value{
 Text listing the character coding notes for each taxon, ready for inclusion in a markdown source document
