@@ -70,6 +70,12 @@ PrintStates <- function (states) {
 #' @param notes Named character vector, with names corresponding to terminal taxa,
 #' and values corresponding to character coding notes for each taxon in turn.
 #' This matches the format given by `ReadNotes(filename)[[character_number]][[2]]`.`
+#' @param taxaNames Character vector specifying names of taxa.
+#' @param taxaItalic Character vector corresponding to taxaNames, but using
+#' `_`underscores`_` to denote italic text where required.
+#' @param charId Character or integer identifying the character, for use in the
+#' resultant div's ID attribute.
+#' @param Format Function that adds italics or other formatting to printed notes.
 #'
 #' @return Text listing the character coding notes for each taxon, ready for inclusion in a markdown source document
 #'
@@ -85,15 +91,20 @@ PrintStates <- function (states) {
 #'   PrintStateNotes(character_1_notes[[2]])
 #'   }
 #' }
-PrintStateNotes <- function (notes) {
+PrintStateNotes <- function (notes, taxaNames=NULL, taxaItalic=taxaNames,
+                             charId=character(0), Format=I) {
   PrintThisNote <- function (note) {
     afflictedTaxa <- names(note)[note]
+    if (is.null(taxaNames)) {
+      taxaNames <- taxaItalic <- afflictedTaxa
+    }
     master <- afflictedTaxa[1]
-    cat(paste0("<div class='state-note' id='", master, "-coding-", i, "'>",
-               paste(taxa_italic[taxa_names %in% afflictedTaxa], collapse=', '),
-               ": ", Italicize(notes[master]), "</div>  \n  \n"))
+    cat(paste0("<div class='state-note' id='", master, "-coding-", charId, "'>",
+               paste(taxaItalic[taxaNames %in% afflictedTaxa], collapse=', '),
+               ": ", Format(notes[master]), "</div>  \n  \n"))
   }
 
+  DuplicateOf <- function (x) {
     duplicates <- duplicated(x)
     masters <- x[!duplicates]
     vapply(masters, function (d) x == d, logical(length(x)))

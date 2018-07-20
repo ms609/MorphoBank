@@ -4,12 +4,23 @@
 \alias{PrintStateNotes}
 \title{Print State Notes}
 \usage{
-PrintStateNotes(notes)
+PrintStateNotes(notes, taxaNames = NULL, taxaItalic = taxaNames,
+  charId = character(0), Format = I)
 }
 \arguments{
 \item{notes}{Named character vector, with names corresponding to terminal taxa,
 and values corresponding to character coding notes for each taxon in turn.
 This matches the format given by `ReadNotes(filename)[[character_number]][[2]]`.`}
+
+\item{taxaNames}{Character vector specifying names of taxa.}
+
+\item{taxaItalic}{Character vector corresponding to taxaNames, but using
+`_`underscores`_` to denote italic text where required.}
+
+\item{charId}{Character or integer identifying the character, for use in the
+resultant div's ID attribute.}
+
+\item{Format}{Function that adds italics or other formatting to printed notes.}
 }
 \value{
 Text listing the character coding notes for each taxon, ready for inclusion in a markdown source document
