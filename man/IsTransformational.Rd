@@ -10,7 +10,8 @@ IsTransformational(states)
 IsNeomorphic(states)
 }
 \arguments{
-\item{states}{TODO}
+\item{states}{A character vector stating the labels for each character state,
+as given by `attr(ReadCharacters(filename), 'state.labels')`}
 }
 \value{
 A logical specifying whether each character is transformational
