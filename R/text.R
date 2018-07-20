@@ -40,6 +40,18 @@ MorphoBankDecode <- function (string) {
   string
 }
 
+
+#' Print States
+#'
+#' Prints a summary of the character states for a given character
+#'
+#' @param states A character vector stating the labels for each character state,
+#' as given by `attr(ReadCharacters(filename), 'state.labels')`
+#'
+#' @return Text listing the states, ready for inclusion in a markdown source document
+#'
+#' @author Martin R. Smith
+#' @export
 PrintStates <- function (states) {
   states <- gsub("^'(.*)'$", "\\1", states)
   tokens <- seq_along(states) - 1L
@@ -83,7 +95,7 @@ MorphoLink <- function (id=getOption('MorphoBankProject'), linkText=paste('proje
     paste("<mark>[This dataset has not yet been released to the public.",
     "If you have been given a password, access the dataset by",
     "[logging in to MorphoBank](https://morphobank.org/index.php/LoginReg/form)",
-    "using the project ID'", id,
-    "'as your e-mail address, and the password you have been given.]</mark>")
+    "using the project ID `", id,
+    "` as your e-mail address, and the password you have been given.]</mark>")
   }
 }
