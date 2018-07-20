@@ -45,8 +45,7 @@ MorphoBankDecode <- function (string) {
 #'
 #' Prints a summary of the character states for a given character
 #'
-#' @param states A character vector stating the labels for each character state,
-#' as given by `attr(ReadCharacters(filename), 'state.labels')`
+#' @template statesParam
 #'
 #' @return Text listing the states, ready for inclusion in a markdown source document
 #'
@@ -66,10 +65,21 @@ PrintStates <- function (states) {
   cat("> ", if (transformational) "Transformational" else "Neomorphic", "character.  \n>\n")
 }
 
+#' Print Naughty Inapplicables
+#'
+#' Prints a warning message when an inapplicable token is found in a neomorphic character.
+#'
+#' @template statesParam
+#'
+#' @return A warning message for inclusion in a markdown documnet.
+#'
+#' @author Martin R. Smith
+#' @export
 PrintNaughtyInapplicables <- function (states) {
   if (any(states == '-'))
     cat("  \n Oh dear! <mark>**You included the inapplicable token in a neomorphic character!**</mark>",
-        "  \n That's really very naughty, as @Brazeau2018 will tell you.",
+        "  \n That's unlikely to be a good idea:",
+        "  see Brazeau, Smith & Guillerme (2018, Systematic Biology).",
         "  \n Unless you are very sure that you understand the consequences, ",
         "you should mark the character as Transformational by setting State 0 to",
         "`[Transformational character]`, or re-code: \n\n - ",
