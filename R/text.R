@@ -94,6 +94,11 @@ PrintStateNotes <- function (notes) {
                ": ", Italicize(notes[master]), "</div>  \n  \n"))
   }
 
+    duplicates <- duplicated(x)
+    masters <- x[!duplicates]
+    vapply(masters, function (d) x == d, logical(length(x)))
+  }
+
   if (length(notes) > 0) {
     cat('  \n<div class="state-notes">')
   }
