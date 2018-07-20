@@ -65,6 +65,52 @@ PrintStates <- function (states) {
   cat("> ", if (transformational) "Transformational" else "Neomorphic", "character.  \n>\n")
 }
 
+#' Print State Notes
+#'
+#' @param notes Named character vector, with names corresponding to terminal taxa,
+#' and values corresponding to character coding notes for each taxon in turn.
+#' This matches the format given by `ReadNotes(filename)[[character_number]][[2]]`.`
+#'
+#' @return Text listing the character coding notes for each taxon, ready for inclusion in a markdown source document
+#'
+#' @author Martin R. Smith
+#' @export
+#'
+#' @examples {
+#' \dontrun{
+#'   notes <- ReadNotes(filename)
+#'   character_1_notes <- notes[[1]]
+#'   cat("Character 1")
+#'
+#'   PrintStateNotes(character_1_notes[[2]])
+#'   }
+#' }
+PrintStateNotes <- function (notes) {
+  PrintThisNote <- function (note) {
+    afflictedTaxa <- names(note)[note]
+    master <- afflictedTaxa[1]
+    cat(paste0("<div class='state-note' id='", master, "-coding-", i, "'>",
+               paste(taxa_italic[taxa_names %in% afflictedTaxa], collapse=', '),
+               ": ", Italicize(notes[master]), "</div>  \n  \n"))
+  }
+
+  if (length(notes) > 0) {
+    cat('  \n<div class="state-notes">')
+  }
+  if (length(notes) == 1) {
+    onlyOne <- TRUE
+    names(onlyOne) <- names(notes)
+    PrintThisNote(onlyOne)
+  } else {
+    notes <- notes[order(names(notes))]
+    duplicates <- DuplicateOf(toupper(notes))
+    apply(duplicates, 2, PrintThisNote)
+  }
+  if (length(notes) > 0) {
+    cat('</div>  \n  \n')
+  }
+}
+
 #' Print Naughty Inapplicables
 #'
 #' Prints a warning message when an inapplicable token is found in a neomorphic character.
