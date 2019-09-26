@@ -3,7 +3,7 @@ Title: An R Interface to MorphoBank Projects
 Version: 0.0.0.9000
 Date: 2018-07-18
 Authors@R: c(person("Martin R.", 'Smith',
-                  email="martins@gmail.com", 
+                  email='martin.smith@durham.ac.uk',
                   role=c("aut", "cre", "cph"), 
                   comment=c(ORCID = "0000-0001-5660-1727"))
             )
