@@ -34,7 +34,8 @@ MorphoBankDecode <- function (string) {
   string <- gsub(" - ", " -- ", string, fixed=TRUE)
   string <- gsub("(\\d)\\-(\\d)", "\\1--\\2", string, perl=TRUE)
   string <- gsub("(\\d) ?um\\b", "\\1 \u{03BC}m", string, perl=TRUE)
-  string <- gsub(" [recoded as neomorphic]", " Inapplicable tokens in this neomorphic character have been replaced with the absent token, following @Brazeau2018", string, fixed=TRUE)
+  string <- gsub(" [recoded as neomorphic]",
+                 " Inapplicable tokens in this neomorphic character have been replaced with the absent token, following @Brazeau2018", string, fixed=TRUE)
 
   # Return:
   string
@@ -141,7 +142,7 @@ PrintNaughtyInapplicables <- function (states) {
   if (any(states == '-'))
     cat("  \n Oh dear! <mark>**You included the inapplicable token in a neomorphic character!**</mark>",
         "  \n That's unlikely to be a good idea:",
-        "  see Brazeau, Smith & Guillerme (2018, Systematic Biology).",
+        "  see Brazeau, Smith & Guillerme (2019, Systematic Biology).",
         "  \n Unless you are very sure that you understand the consequences, ",
         "you should mark the character as Transformational by setting State 0 to",
         "`[Transformational character]`, or re-code: \n\n - ",
