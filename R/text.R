@@ -153,16 +153,17 @@ PrintNaughtyInapplicables <- function (states) {
 #'
 #' @param id Integer corresponding to the project's MorphoBank identifier.
 #' A global default can be set using `options(MorphoBankProject=1234)`.
-#' @param linkText Text to appear in link, once project is live
+#' @param linkText Text to appear in link, once project is live.
 #' @param checkAccess Logical specifying whether to display a notice if the
-#'                    project is not yet available to the public
+#'                    project is not yet available to the public.
 #'
-#' @return Text providing a link to the project, or if the project is not yet
-#' publically available, a note instructing password holders how to log in.
+#' @return `MorphoLink()` returns text providing a link to the project,
+#' or if the project is not yet publicly available,
+#' a note instructing password holders how to log in.
 #' @export
-MorphoLink <- function (id=getOption('MorphoBankProject'),
-                        linkText=paste('project', id),
-                        checkAccess=TRUE) {
+MorphoLink <- function (id = getOption('MorphoBankProject'),
+                        linkText = paste('project', id),
+                        checkAccess = TRUE) {
 
   taxaRoot <- "http://morphobank.org/index.php/Projects/Taxa/project_id/"
   linkStatus <- ifelse(checkAccess,
