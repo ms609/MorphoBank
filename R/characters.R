@@ -11,13 +11,14 @@ ReadNotes <- function (filename) {
   charNote.pattern <- "^\\s+TEXT\\s+CHARACTER=(\\d+)\\s+TEXT='(.*)';\\s*$"
   stateNote.pattern <- "^\\s+TEXT\\s+TAXON=(\\d+)\\s+CHARACTER=(\\d+)\\s+TEXT='(.*)';\\s*$"
 
-  lines <- enc2utf8(readLines(filename))
+  lines <- enc2utf8(readLines(filename, warn = FALSE))
   upperLines <- toupper(lines)
+  trimUpperLines <- trimws(upperLines)
 
-  notesStart <- which(upperLines == "BEGIN NOTES;")
-  endBlocks <- which(upperLines == "ENDBLOCK;")
-  taxlabels <- which(trimws(upperLines) == "TAXLABELS")
-  semicolons <- which(trimws(upperLines) == ";")
+  notesStart <- which(trimUpperLines == "BEGIN NOTES;")
+  endBlocks <- which(trimUpperLines == "ENDBLOCK;")
+  taxlabels <- which(trimUpperLines == "TAXLABELS")
+  semicolons <- which(trimUpperLines == ";")
 
   if (length(notesStart) == 0) {
     return(list("NOTES block not found in Nexus file."))
