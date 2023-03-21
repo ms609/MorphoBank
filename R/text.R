@@ -100,9 +100,9 @@ PrintStateNotes <- function (notes, taxaNames=NULL, taxaItalic=taxaNames,
       taxaNames <- taxaItalic <- afflictedTaxa
     }
     master <- afflictedTaxa[1]
-    cat(paste0("<div class='state-note' id='", master, "-coding-", charId, "'>",
+    cat(paste0("<div class='state-note' id='", master, "-coding-", charId, "'><span class='state-note-taxon'>",
                paste(taxaItalic[taxaNames %in% afflictedTaxa], collapse=', '),
-               ": ", Format(notes[master]), "</div>  \n  \n"))
+               ":</span> ", Format(notes[master]), "</div>  \n  \n"))
   }
 
   DuplicateOf <- function (x) {
