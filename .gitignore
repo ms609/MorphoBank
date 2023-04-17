@@ -19,7 +19,6 @@
 .Rhistory
 .Rprofile
 .Rdata
-*.Rproj
 
 # produced vignettes
 vignettes/*.html
