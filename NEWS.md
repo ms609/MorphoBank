@@ -1,4 +1,4 @@
-# MorphoBank 0.0.1
+# MorphoBank 0.0.0.9000
 
 ## New features
- - Welcome to my MorphoBank R package.
+ - Initial package draft
